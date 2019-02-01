@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="126d05fb3671418e8b84f0cc80e617d5" Name="Diagram1" ZoomLevel="68">
+        <EntityTypeShape EntityType="AirBosniaModel.Avion" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirBosniaModel.Grad" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirBosniaModel.KorisnickiNalog" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirBosniaModel.Let" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirBosniaModel.PosadaLeta" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirBosniaModel.PosebnaPonuda" Width="1.5" PointX="11.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirBosniaModel.TipZaposlenja" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirBosniaModel.Zaposlenik" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="AirBosniaModel.FK__Let__AvionID__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__Let__OdredisteID__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__Let__PolazisteID__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__Zaposleni__GradI__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__Korisnick__Zapos__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__Let__ZaposlenikI__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__PosadaLet__LetID__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__PosebnaPo__LetDo__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__PosebnaPo__LetPo__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__PosadaLet__ClanP__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__PosebnaPo__Zapos__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="AirBosniaModel.FK__Zaposleni__TipZa__29572725" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AirBosniaModel.Sjediste" Width="1.5" PointX="5.25" PointY="10" />
+        <AssociationConnector Association="AirBosniaModel.FK__Sjediste__LetID__4BAC3F29" />
+        <EntityTypeShape EntityType="AirBosniaModel.Korisnik" Width="1.5" PointX="5.25" PointY="13.5" />
+        <EntityTypeShape EntityType="AirBosniaModel.Rezervacija" Width="1.5" PointX="7.5" PointY="9.75" />
+        <AssociationConnector Association="AirBosniaModel.FK__Rezervaci__Koris__5EBF139D" />
+        <AssociationConnector Association="AirBosniaModel.FK__Rezervaci__LetPo__5FB337D6" />
+        <AssociationConnector Association="AirBosniaModel.FK__Rezervaci__Sjedi__619B8048" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

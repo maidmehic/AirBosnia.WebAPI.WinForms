@@ -1,0 +1,1012 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AirBosniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Avion">
+          <Key>
+            <PropertyRef Name="AvionID" />
+          </Key>
+          <Property Name="AvionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Oznaka" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BrojSjedistaBuss" Type="int" />
+          <Property Name="BrojSjedistaEco" Type="int" />
+        </EntityType>
+        <EntityType Name="Grad">
+          <Key>
+            <PropertyRef Name="GradID" />
+          </Key>
+          <Property Name="GradID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Oznaka" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="KorisnickiNalog">
+          <Key>
+            <PropertyRef Name="KorisnickiNalogID" />
+          </Key>
+          <Property Name="KorisnickiNalogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZaposlenikID" Type="int" Nullable="false" />
+          <Property Name="KorisnickoIme" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Lozinka" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lozinka" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Let">
+          <Key>
+            <PropertyRef Name="LetID" />
+          </Key>
+          <Property Name="LetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PolazisteID" Type="int" Nullable="false" />
+          <Property Name="OdredisteID" Type="int" Nullable="false" />
+          <Property Name="ZaposlenikID" Type="int" Nullable="false" />
+          <Property Name="BrojLeta" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AvionID" Type="int" Nullable="false" />
+          <Property Name="DatumVrijemePolaska" Type="datetime" Nullable="false" />
+          <Property Name="DatumVrijemeDolaska" Type="datetime" Nullable="false" />
+          <Property Name="StatusLeta" Type="bit" Nullable="false" />
+          <Property Name="CijenaBussOdrasli" Type="float" />
+          <Property Name="CijenaBussDjeca" Type="float" />
+          <Property Name="CijenaEcoDjeca" Type="float" Nullable="false" />
+          <Property Name="CijenaEcoOdrasli" Type="float" Nullable="false" />
+          <Property Name="isPosebnaPonuda" Type="bit" />
+        </EntityType>
+        <EntityType Name="PosadaLeta">
+          <Key>
+            <PropertyRef Name="PosadaLetaID" />
+          </Key>
+          <Property Name="PosadaLetaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LetID" Type="int" Nullable="false" />
+          <Property Name="ClanPosadeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PosebnaPonuda">
+          <Key>
+            <PropertyRef Name="PosebnaPonudaID" />
+          </Key>
+          <Property Name="PosebnaPonudaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LetPolazakID" Type="int" Nullable="false" />
+          <Property Name="LetDolazakID" Type="int" Nullable="false" />
+          <Property Name="ZaposlenikID" Type="int" Nullable="false" />
+          <Property Name="CijenaBezKarte" Type="float" Nullable="false" />
+          <Property Name="BrojDana" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Smjestaj" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Napomena" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Rezervacija">
+          <Key>
+            <PropertyRef Name="RezervacijaID" />
+          </Key>
+          <Property Name="RezervacijaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="LetPolazakID" Type="int" Nullable="false" />
+          <Property Name="SjedistePolazakID" Type="int" Nullable="false" />
+          <Property Name="ImePutnika" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrezimePutnika" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DatumRodjenjaPutnika" Type="date" Nullable="false" />
+          <Property Name="Spol" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="TipPutnika" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipDokumenta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BrojDokumenta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DatumRezervacije" Type="datetime" Nullable="false" />
+          <Property Name="CijenaKarte" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sjediste">
+          <Key>
+            <PropertyRef Name="SjedisteID" />
+          </Key>
+          <Property Name="SjedisteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Oznaka" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="LetID" Type="int" Nullable="false" />
+          <Property Name="isZauzeto" Type="bit" Nullable="false" />
+          <Property Name="isBussiness" Type="bit" Nullable="false" />
+          <Property Name="isProzor" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipZaposlenja">
+          <Key>
+            <PropertyRef Name="TipZaposlenjaID" />
+          </Key>
+          <Property Name="TipZaposlenjaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zaposlenik">
+          <Key>
+            <PropertyRef Name="ZaposlenikID" />
+          </Key>
+          <Property Name="ZaposlenikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BrojUgovora" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Spol" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DatumRodenja" Type="date" Nullable="false" />
+          <Property Name="Aktivan" Type="bit" Nullable="false" />
+          <Property Name="TipZaposlenjaID" Type="int" Nullable="false" />
+          <Property Name="GradID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Korisnick__Zapos__2D27B809">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="KorisnickiNalog" Type="Self.KorisnickiNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="KorisnickiNalog">
+              <PropertyRef Name="ZaposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Let__AvionID__32E0915F">
+          <End Role="Avion" Type="Self.Avion" Multiplicity="1" />
+          <End Role="Let" Type="Self.Let" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avion">
+              <PropertyRef Name="AvionID" />
+            </Principal>
+            <Dependent Role="Let">
+              <PropertyRef Name="AvionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Let__OdredisteID__30F848ED">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Let" Type="Self.Let" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Let">
+              <PropertyRef Name="OdredisteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Let__PolazisteID__300424B4">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Let" Type="Self.Let" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Let">
+              <PropertyRef Name="PolazisteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Let__ZaposlenikI__31EC6D26">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="Let" Type="Self.Let" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="Let">
+              <PropertyRef Name="ZaposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosadaLet__ClanP__3B75D760">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="PosadaLeta" Type="Self.PosadaLeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="PosadaLeta">
+              <PropertyRef Name="ClanPosadeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosadaLet__LetID__3A81B327">
+          <End Role="Let" Type="Self.Let" Multiplicity="1" />
+          <End Role="PosadaLeta" Type="Self.PosadaLeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="PosadaLeta">
+              <PropertyRef Name="LetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosebnaPo__LetDo__36B12243">
+          <End Role="Let" Type="Self.Let" Multiplicity="1" />
+          <End Role="PosebnaPonuda" Type="Self.PosebnaPonuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="PosebnaPonuda">
+              <PropertyRef Name="LetDolazakID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosebnaPo__LetPo__35BCFE0A">
+          <End Role="Let" Type="Self.Let" Multiplicity="1" />
+          <End Role="PosebnaPonuda" Type="Self.PosebnaPonuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="PosebnaPonuda">
+              <PropertyRef Name="LetPolazakID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosebnaPo__Zapos__37A5467C">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="PosebnaPonuda" Type="Self.PosebnaPonuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="PosebnaPonuda">
+              <PropertyRef Name="ZaposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rezervaci__Koris__5EBF139D">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Rezervacija">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rezervaci__LetPo__5FB337D6">
+          <End Role="Let" Type="Self.Let" Multiplicity="1" />
+          <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="Rezervacija">
+              <PropertyRef Name="LetPolazakID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rezervaci__Sjedi__619B8048">
+          <End Role="Sjediste" Type="Self.Sjediste" Multiplicity="1" />
+          <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sjediste">
+              <PropertyRef Name="SjedisteID" />
+            </Principal>
+            <Dependent Role="Rezervacija">
+              <PropertyRef Name="SjedistePolazakID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sjediste__LetID__4BAC3F29">
+          <End Role="Let" Type="Self.Let" Multiplicity="1" />
+          <End Role="Sjediste" Type="Self.Sjediste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="Sjediste">
+              <PropertyRef Name="LetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zaposleni__GradI__2A4B4B5E">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zaposleni__TipZa__29572725">
+          <End Role="TipZaposlenja" Type="Self.TipZaposlenja" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipZaposlenja">
+              <PropertyRef Name="TipZaposlenjaID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="TipZaposlenjaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AirBosniaModelStoreContainer">
+          <EntitySet Name="Avion" EntityType="Self.Avion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KorisnickiNalog" EntityType="Self.KorisnickiNalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Let" EntityType="Self.Let" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosadaLeta" EntityType="Self.PosadaLeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosebnaPonuda" EntityType="Self.PosebnaPonuda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rezervacija" EntityType="Self.Rezervacija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sjediste" EntityType="Self.Sjediste" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipZaposlenja" EntityType="Self.TipZaposlenja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zaposlenik" EntityType="Self.Zaposlenik" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Korisnick__Zapos__2D27B809" Association="Self.FK__Korisnick__Zapos__2D27B809">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="KorisnickiNalog" EntitySet="KorisnickiNalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Let__AvionID__32E0915F" Association="Self.FK__Let__AvionID__32E0915F">
+            <End Role="Avion" EntitySet="Avion" />
+            <End Role="Let" EntitySet="Let" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Let__OdredisteID__30F848ED" Association="Self.FK__Let__OdredisteID__30F848ED">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Let" EntitySet="Let" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Let__PolazisteID__300424B4" Association="Self.FK__Let__PolazisteID__300424B4">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Let" EntitySet="Let" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Let__ZaposlenikI__31EC6D26" Association="Self.FK__Let__ZaposlenikI__31EC6D26">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="Let" EntitySet="Let" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosadaLet__ClanP__3B75D760" Association="Self.FK__PosadaLet__ClanP__3B75D760">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="PosadaLeta" EntitySet="PosadaLeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosadaLet__LetID__3A81B327" Association="Self.FK__PosadaLet__LetID__3A81B327">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="PosadaLeta" EntitySet="PosadaLeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosebnaPo__LetDo__36B12243" Association="Self.FK__PosebnaPo__LetDo__36B12243">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="PosebnaPonuda" EntitySet="PosebnaPonuda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosebnaPo__LetPo__35BCFE0A" Association="Self.FK__PosebnaPo__LetPo__35BCFE0A">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="PosebnaPonuda" EntitySet="PosebnaPonuda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosebnaPo__Zapos__37A5467C" Association="Self.FK__PosebnaPo__Zapos__37A5467C">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="PosebnaPonuda" EntitySet="PosebnaPonuda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rezervaci__Koris__5EBF139D" Association="Self.FK__Rezervaci__Koris__5EBF139D">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Rezervacija" EntitySet="Rezervacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rezervaci__LetPo__5FB337D6" Association="Self.FK__Rezervaci__LetPo__5FB337D6">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="Rezervacija" EntitySet="Rezervacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rezervaci__Sjedi__619B8048" Association="Self.FK__Rezervaci__Sjedi__619B8048">
+            <End Role="Sjediste" EntitySet="Sjediste" />
+            <End Role="Rezervacija" EntitySet="Rezervacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sjediste__LetID__4BAC3F29" Association="Self.FK__Sjediste__LetID__4BAC3F29">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="Sjediste" EntitySet="Sjediste" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zaposleni__GradI__2A4B4B5E" Association="Self.FK__Zaposleni__GradI__2A4B4B5E">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zaposleni__TipZa__29572725" Association="Self.FK__Zaposleni__TipZa__29572725">
+            <End Role="TipZaposlenja" EntitySet="TipZaposlenja" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AirBosniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Avion">
+          <Key>
+            <PropertyRef Name="AvionID" />
+          </Key>
+          <Property Name="AvionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Oznaka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Let" Relationship="Self.FK__Let__AvionID__32E0915F" FromRole="Avion" ToRole="Let" />
+          <Property Name="BrojSjedistaBuss" Type="Int32" />
+          <Property Name="BrojSjedistaEco" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Grad">
+          <Key>
+            <PropertyRef Name="GradID" />
+          </Key>
+          <Property Name="GradID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Oznaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Let" Relationship="Self.FK__Let__OdredisteID__30F848ED" FromRole="Grad" ToRole="Let" />
+          <NavigationProperty Name="Let1" Relationship="Self.FK__Let__PolazisteID__300424B4" FromRole="Grad" ToRole="Let" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK__Zaposleni__GradI__2A4B4B5E" FromRole="Grad" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="KorisnickiNalog">
+          <Key>
+            <PropertyRef Name="KorisnickiNalogID" />
+          </Key>
+          <Property Name="KorisnickiNalogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZaposlenikID" Type="Int32" Nullable="false" />
+          <Property Name="KorisnickoIme" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lozinka" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK__Korisnick__Zapos__2D27B809" FromRole="KorisnickiNalog" ToRole="Zaposlenik" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Let">
+          <Key>
+            <PropertyRef Name="LetID" />
+          </Key>
+          <Property Name="LetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PolazisteID" Type="Int32" Nullable="false" />
+          <Property Name="OdredisteID" Type="Int32" Nullable="false" />
+          <Property Name="ZaposlenikID" Type="Int32" Nullable="false" />
+          <Property Name="BrojLeta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AvionID" Type="Int32" Nullable="false" />
+          <Property Name="DatumVrijemePolaska" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatumVrijemeDolaska" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusLeta" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Avion" Relationship="Self.FK__Let__AvionID__32E0915F" FromRole="Let" ToRole="Avion" />
+          <NavigationProperty Name="Grad" Relationship="Self.FK__Let__OdredisteID__30F848ED" FromRole="Let" ToRole="Grad" />
+          <NavigationProperty Name="Grad1" Relationship="Self.FK__Let__PolazisteID__300424B4" FromRole="Let" ToRole="Grad" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK__Let__ZaposlenikI__31EC6D26" FromRole="Let" ToRole="Zaposlenik" />
+          <NavigationProperty Name="PosadaLeta" Relationship="Self.FK__PosadaLet__LetID__3A81B327" FromRole="Let" ToRole="PosadaLeta" />
+          <NavigationProperty Name="PosebnaPonuda" Relationship="Self.FK__PosebnaPo__LetDo__36B12243" FromRole="Let" ToRole="PosebnaPonuda" />
+          <NavigationProperty Name="PosebnaPonuda1" Relationship="Self.FK__PosebnaPo__LetPo__35BCFE0A" FromRole="Let" ToRole="PosebnaPonuda" />
+          <Property Name="CijenaBussOdrasli" Type="Double" />
+          <Property Name="CijenaBussDjeca" Type="Double" />
+          <Property Name="CijenaEcoDjeca" Type="Double" Nullable="false" />
+          <Property Name="CijenaEcoOdrasli" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Sjediste" Relationship="AirBosniaModel.FK__Sjediste__LetID__4BAC3F29" FromRole="Let" ToRole="Sjediste" />
+          <NavigationProperty Name="Rezervacija" Relationship="AirBosniaModel.FK__Rezervaci__LetPo__5FB337D6" FromRole="Let" ToRole="Rezervacija" />
+          <Property Name="isPosebnaPonuda" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PosadaLeta">
+          <Key>
+            <PropertyRef Name="PosadaLetaID" />
+          </Key>
+          <Property Name="PosadaLetaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LetID" Type="Int32" Nullable="false" />
+          <Property Name="ClanPosadeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Let" Relationship="Self.FK__PosadaLet__LetID__3A81B327" FromRole="PosadaLeta" ToRole="Let" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK__PosadaLet__ClanP__3B75D760" FromRole="PosadaLeta" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="PosebnaPonuda">
+          <Key>
+            <PropertyRef Name="PosebnaPonudaID" />
+          </Key>
+          <Property Name="PosebnaPonudaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LetPolazakID" Type="Int32" Nullable="false" />
+          <Property Name="LetDolazakID" Type="Int32" Nullable="false" />
+          <Property Name="ZaposlenikID" Type="Int32" Nullable="false" />
+          <Property Name="CijenaBezKarte" Type="Double" Nullable="false" />
+          <Property Name="BrojDana" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Smjestaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Napomena" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Let" Relationship="Self.FK__PosebnaPo__LetDo__36B12243" FromRole="PosebnaPonuda" ToRole="Let" />
+          <NavigationProperty Name="Let1" Relationship="Self.FK__PosebnaPo__LetPo__35BCFE0A" FromRole="PosebnaPonuda" ToRole="Let" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK__PosebnaPo__Zapos__37A5467C" FromRole="PosebnaPonuda" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="TipZaposlenja">
+          <Key>
+            <PropertyRef Name="TipZaposlenjaID" />
+          </Key>
+          <Property Name="TipZaposlenjaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK__Zaposleni__TipZa__29572725" FromRole="TipZaposlenja" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="Zaposlenik">
+          <Key>
+            <PropertyRef Name="ZaposlenikID" />
+          </Key>
+          <Property Name="ZaposlenikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BrojUgovora" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Spol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DatumRodenja" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Aktivan" Type="Boolean" Nullable="false" />
+          <Property Name="TipZaposlenjaID" Type="Int32" Nullable="false" />
+          <Property Name="GradID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grad" Relationship="Self.FK__Zaposleni__GradI__2A4B4B5E" FromRole="Zaposlenik" ToRole="Grad" />
+          <NavigationProperty Name="KorisnickiNalog" Relationship="Self.FK__Korisnick__Zapos__2D27B809" FromRole="Zaposlenik" ToRole="KorisnickiNalog" />
+          <NavigationProperty Name="Let" Relationship="Self.FK__Let__ZaposlenikI__31EC6D26" FromRole="Zaposlenik" ToRole="Let" />
+          <NavigationProperty Name="PosadaLeta" Relationship="Self.FK__PosadaLet__ClanP__3B75D760" FromRole="Zaposlenik" ToRole="PosadaLeta" />
+          <NavigationProperty Name="PosebnaPonuda" Relationship="Self.FK__PosebnaPo__Zapos__37A5467C" FromRole="Zaposlenik" ToRole="PosebnaPonuda" />
+          <NavigationProperty Name="TipZaposlenja" Relationship="Self.FK__Zaposleni__TipZa__29572725" FromRole="Zaposlenik" ToRole="TipZaposlenja" />
+        </EntityType>
+        <Association Name="FK__Let__AvionID__32E0915F">
+          <End Role="Avion" Type="Self.Avion" Multiplicity="1" />
+          <End Role="Let" Type="Self.Let" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avion">
+              <PropertyRef Name="AvionID" />
+            </Principal>
+            <Dependent Role="Let">
+              <PropertyRef Name="AvionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Let__OdredisteID__30F848ED">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Let" Type="Self.Let" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Let">
+              <PropertyRef Name="OdredisteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Let__PolazisteID__300424B4">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Let" Type="Self.Let" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Let">
+              <PropertyRef Name="PolazisteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zaposleni__GradI__2A4B4B5E">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Korisnick__Zapos__2D27B809">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="KorisnickiNalog" Type="Self.KorisnickiNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="KorisnickiNalog">
+              <PropertyRef Name="ZaposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Let__ZaposlenikI__31EC6D26">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="Let" Type="Self.Let" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="Let">
+              <PropertyRef Name="ZaposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosadaLet__LetID__3A81B327">
+          <End Role="Let" Type="Self.Let" Multiplicity="1" />
+          <End Role="PosadaLeta" Type="Self.PosadaLeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="PosadaLeta">
+              <PropertyRef Name="LetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosebnaPo__LetDo__36B12243">
+          <End Role="Let" Type="Self.Let" Multiplicity="1" />
+          <End Role="PosebnaPonuda" Type="Self.PosebnaPonuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="PosebnaPonuda">
+              <PropertyRef Name="LetDolazakID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosebnaPo__LetPo__35BCFE0A">
+          <End Role="Let" Type="Self.Let" Multiplicity="1" />
+          <End Role="PosebnaPonuda" Type="Self.PosebnaPonuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="PosebnaPonuda">
+              <PropertyRef Name="LetPolazakID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosadaLet__ClanP__3B75D760">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="PosadaLeta" Type="Self.PosadaLeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="PosadaLeta">
+              <PropertyRef Name="ClanPosadeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosebnaPo__Zapos__37A5467C">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="PosebnaPonuda" Type="Self.PosebnaPonuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="PosebnaPonuda">
+              <PropertyRef Name="ZaposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zaposleni__TipZa__29572725">
+          <End Role="TipZaposlenja" Type="Self.TipZaposlenja" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipZaposlenja">
+              <PropertyRef Name="TipZaposlenjaID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="TipZaposlenjaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AirBosniaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Avion" EntityType="Self.Avion" />
+          <EntitySet Name="Grad" EntityType="Self.Grad" />
+          <EntitySet Name="KorisnickiNalog" EntityType="Self.KorisnickiNalog" />
+          <EntitySet Name="Let" EntityType="Self.Let" />
+          <EntitySet Name="PosadaLeta" EntityType="Self.PosadaLeta" />
+          <EntitySet Name="PosebnaPonuda" EntityType="Self.PosebnaPonuda" />
+          <EntitySet Name="TipZaposlenja" EntityType="Self.TipZaposlenja" />
+          <EntitySet Name="Zaposlenik" EntityType="Self.Zaposlenik" />
+          <AssociationSet Name="FK__Let__AvionID__32E0915F" Association="Self.FK__Let__AvionID__32E0915F">
+            <End Role="Avion" EntitySet="Avion" />
+            <End Role="Let" EntitySet="Let" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Let__OdredisteID__30F848ED" Association="Self.FK__Let__OdredisteID__30F848ED">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Let" EntitySet="Let" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Let__PolazisteID__300424B4" Association="Self.FK__Let__PolazisteID__300424B4">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Let" EntitySet="Let" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zaposleni__GradI__2A4B4B5E" Association="Self.FK__Zaposleni__GradI__2A4B4B5E">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Korisnick__Zapos__2D27B809" Association="Self.FK__Korisnick__Zapos__2D27B809">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="KorisnickiNalog" EntitySet="KorisnickiNalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Let__ZaposlenikI__31EC6D26" Association="Self.FK__Let__ZaposlenikI__31EC6D26">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="Let" EntitySet="Let" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosadaLet__LetID__3A81B327" Association="Self.FK__PosadaLet__LetID__3A81B327">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="PosadaLeta" EntitySet="PosadaLeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosebnaPo__LetDo__36B12243" Association="Self.FK__PosebnaPo__LetDo__36B12243">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="PosebnaPonuda" EntitySet="PosebnaPonuda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosebnaPo__LetPo__35BCFE0A" Association="Self.FK__PosebnaPo__LetPo__35BCFE0A">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="PosebnaPonuda" EntitySet="PosebnaPonuda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosadaLet__ClanP__3B75D760" Association="Self.FK__PosadaLet__ClanP__3B75D760">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="PosadaLeta" EntitySet="PosadaLeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosebnaPo__Zapos__37A5467C" Association="Self.FK__PosebnaPo__Zapos__37A5467C">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="PosebnaPonuda" EntitySet="PosebnaPonuda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zaposleni__TipZa__29572725" Association="Self.FK__Zaposleni__TipZa__29572725">
+            <End Role="TipZaposlenja" EntitySet="TipZaposlenja" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <EntitySet Name="Sjediste" EntityType="AirBosniaModel.Sjediste" />
+          <AssociationSet Name="FK__Sjediste__LetID__4BAC3F29" Association="AirBosniaModel.FK__Sjediste__LetID__4BAC3F29">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="Sjediste" EntitySet="Sjediste" />
+          </AssociationSet>
+          <EntitySet Name="Korisnik" EntityType="AirBosniaModel.Korisnik" />
+          <EntitySet Name="Rezervacija" EntityType="AirBosniaModel.Rezervacija" />
+          <AssociationSet Name="FK__Rezervaci__Koris__5EBF139D" Association="AirBosniaModel.FK__Rezervaci__Koris__5EBF139D">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Rezervacija" EntitySet="Rezervacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rezervaci__LetPo__5FB337D6" Association="AirBosniaModel.FK__Rezervaci__LetPo__5FB337D6">
+            <End Role="Let" EntitySet="Let" />
+            <End Role="Rezervacija" EntitySet="Rezervacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rezervaci__Sjedi__619B8048" Association="AirBosniaModel.FK__Rezervaci__Sjedi__619B8048">
+            <End Role="Sjediste" EntitySet="Sjediste" />
+            <End Role="Rezervacija" EntitySet="Rezervacija" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Sjediste">
+          <Key>
+            <PropertyRef Name="SjedisteID" />
+          </Key>
+          <Property Name="SjedisteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Oznaka" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LetID" Type="Int32" Nullable="false" />
+          <Property Name="isZauzeto" Type="Boolean" Nullable="false" />
+          <Property Name="isBussiness" Type="Boolean" Nullable="false" />
+          <Property Name="isProzor" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Let" Relationship="AirBosniaModel.FK__Sjediste__LetID__4BAC3F29" FromRole="Sjediste" ToRole="Let" />
+          <NavigationProperty Name="Rezervacija" Relationship="AirBosniaModel.FK__Rezervaci__Sjedi__619B8048" FromRole="Sjediste" ToRole="Rezervacija" />
+        </EntityType>
+        <Association Name="FK__Sjediste__LetID__4BAC3F29">
+          <End Type="AirBosniaModel.Let" Role="Let" Multiplicity="1" />
+          <End Type="AirBosniaModel.Sjediste" Role="Sjediste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="Sjediste">
+              <PropertyRef Name="LetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lozinka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rezervacija" Relationship="AirBosniaModel.FK__Rezervaci__Koris__5EBF139D" FromRole="Korisnik" ToRole="Rezervacija" />
+        </EntityType>
+        <EntityType Name="Rezervacija">
+          <Key>
+            <PropertyRef Name="RezervacijaID" />
+          </Key>
+          <Property Name="RezervacijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+          <Property Name="LetPolazakID" Type="Int32" Nullable="false" />
+          <Property Name="SjedistePolazakID" Type="Int32" Nullable="false" />
+          <Property Name="ImePutnika" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrezimePutnika" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DatumRodjenjaPutnika" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Spol" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="TipPutnika" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipDokumenta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BrojDokumenta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Korisnik" Relationship="AirBosniaModel.FK__Rezervaci__Koris__5EBF139D" FromRole="Rezervacija" ToRole="Korisnik" />
+          <NavigationProperty Name="Let" Relationship="AirBosniaModel.FK__Rezervaci__LetPo__5FB337D6" FromRole="Rezervacija" ToRole="Let" />
+          <NavigationProperty Name="Sjediste" Relationship="AirBosniaModel.FK__Rezervaci__Sjedi__619B8048" FromRole="Rezervacija" ToRole="Sjediste" />
+          <Property Name="DatumRezervacije" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CijenaKarte" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Rezervaci__Koris__5EBF139D">
+          <End Type="AirBosniaModel.Korisnik" Role="Korisnik" Multiplicity="1" />
+          <End Type="AirBosniaModel.Rezervacija" Role="Rezervacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Rezervacija">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rezervaci__LetPo__5FB337D6">
+          <End Type="AirBosniaModel.Let" Role="Let" Multiplicity="1" />
+          <End Type="AirBosniaModel.Rezervacija" Role="Rezervacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Let">
+              <PropertyRef Name="LetID" />
+            </Principal>
+            <Dependent Role="Rezervacija">
+              <PropertyRef Name="LetPolazakID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rezervaci__Sjedi__619B8048">
+          <End Type="AirBosniaModel.Sjediste" Role="Sjediste" Multiplicity="1" />
+          <End Type="AirBosniaModel.Rezervacija" Role="Rezervacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sjediste">
+              <PropertyRef Name="SjedisteID" />
+            </Principal>
+            <Dependent Role="Rezervacija">
+              <PropertyRef Name="SjedistePolazakID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AirBosniaModelStoreContainer" CdmEntityContainer="AirBosniaEntities">
+          <EntitySetMapping Name="Avion">
+            <EntityTypeMapping TypeName="AirBosniaModel.Avion">
+              <MappingFragment StoreEntitySet="Avion">
+                <ScalarProperty Name="BrojSjedistaEco" ColumnName="BrojSjedistaEco" />
+                <ScalarProperty Name="BrojSjedistaBuss" ColumnName="BrojSjedistaBuss" />
+                <ScalarProperty Name="AvionID" ColumnName="AvionID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Oznaka" ColumnName="Oznaka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grad">
+            <EntityTypeMapping TypeName="AirBosniaModel.Grad">
+              <MappingFragment StoreEntitySet="Grad">
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Oznaka" ColumnName="Oznaka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KorisnickiNalog">
+            <EntityTypeMapping TypeName="AirBosniaModel.KorisnickiNalog">
+              <MappingFragment StoreEntitySet="KorisnickiNalog">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="KorisnickiNalogID" ColumnName="KorisnickiNalogID" />
+                <ScalarProperty Name="ZaposlenikID" ColumnName="ZaposlenikID" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Let">
+            <EntityTypeMapping TypeName="AirBosniaModel.Let">
+              <MappingFragment StoreEntitySet="Let">
+                <ScalarProperty Name="isPosebnaPonuda" ColumnName="isPosebnaPonuda" />
+                <ScalarProperty Name="CijenaEcoOdrasli" ColumnName="CijenaEcoOdrasli" />
+                <ScalarProperty Name="CijenaEcoDjeca" ColumnName="CijenaEcoDjeca" />
+                <ScalarProperty Name="CijenaBussDjeca" ColumnName="CijenaBussDjeca" />
+                <ScalarProperty Name="CijenaBussOdrasli" ColumnName="CijenaBussOdrasli" />
+                <ScalarProperty Name="LetID" ColumnName="LetID" />
+                <ScalarProperty Name="PolazisteID" ColumnName="PolazisteID" />
+                <ScalarProperty Name="OdredisteID" ColumnName="OdredisteID" />
+                <ScalarProperty Name="ZaposlenikID" ColumnName="ZaposlenikID" />
+                <ScalarProperty Name="BrojLeta" ColumnName="BrojLeta" />
+                <ScalarProperty Name="AvionID" ColumnName="AvionID" />
+                <ScalarProperty Name="DatumVrijemePolaska" ColumnName="DatumVrijemePolaska" />
+                <ScalarProperty Name="DatumVrijemeDolaska" ColumnName="DatumVrijemeDolaska" />
+                <ScalarProperty Name="StatusLeta" ColumnName="StatusLeta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosadaLeta">
+            <EntityTypeMapping TypeName="AirBosniaModel.PosadaLeta">
+              <MappingFragment StoreEntitySet="PosadaLeta">
+                <ScalarProperty Name="PosadaLetaID" ColumnName="PosadaLetaID" />
+                <ScalarProperty Name="LetID" ColumnName="LetID" />
+                <ScalarProperty Name="ClanPosadeID" ColumnName="ClanPosadeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosebnaPonuda">
+            <EntityTypeMapping TypeName="AirBosniaModel.PosebnaPonuda">
+              <MappingFragment StoreEntitySet="PosebnaPonuda">
+                <ScalarProperty Name="PosebnaPonudaID" ColumnName="PosebnaPonudaID" />
+                <ScalarProperty Name="LetPolazakID" ColumnName="LetPolazakID" />
+                <ScalarProperty Name="LetDolazakID" ColumnName="LetDolazakID" />
+                <ScalarProperty Name="ZaposlenikID" ColumnName="ZaposlenikID" />
+                <ScalarProperty Name="CijenaBezKarte" ColumnName="CijenaBezKarte" />
+                <ScalarProperty Name="BrojDana" ColumnName="BrojDana" />
+                <ScalarProperty Name="Smjestaj" ColumnName="Smjestaj" />
+                <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipZaposlenja">
+            <EntityTypeMapping TypeName="AirBosniaModel.TipZaposlenja">
+              <MappingFragment StoreEntitySet="TipZaposlenja">
+                <ScalarProperty Name="TipZaposlenjaID" ColumnName="TipZaposlenjaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zaposlenik">
+            <EntityTypeMapping TypeName="AirBosniaModel.Zaposlenik">
+              <MappingFragment StoreEntitySet="Zaposlenik">
+                <ScalarProperty Name="ZaposlenikID" ColumnName="ZaposlenikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="BrojUgovora" ColumnName="BrojUgovora" />
+                <ScalarProperty Name="Spol" ColumnName="Spol" />
+                <ScalarProperty Name="DatumRodenja" ColumnName="DatumRodenja" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+                <ScalarProperty Name="TipZaposlenjaID" ColumnName="TipZaposlenjaID" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sjediste">
+            <EntityTypeMapping TypeName="AirBosniaModel.Sjediste">
+              <MappingFragment StoreEntitySet="Sjediste">
+                <ScalarProperty Name="isProzor" ColumnName="isProzor" />
+                <ScalarProperty Name="isBussiness" ColumnName="isBussiness" />
+                <ScalarProperty Name="isZauzeto" ColumnName="isZauzeto" />
+                <ScalarProperty Name="LetID" ColumnName="LetID" />
+                <ScalarProperty Name="Oznaka" ColumnName="Oznaka" />
+                <ScalarProperty Name="SjedisteID" ColumnName="SjedisteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisnik">
+            <EntityTypeMapping TypeName="AirBosniaModel.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rezervacija">
+            <EntityTypeMapping TypeName="AirBosniaModel.Rezervacija">
+              <MappingFragment StoreEntitySet="Rezervacija">
+                <ScalarProperty Name="CijenaKarte" ColumnName="CijenaKarte" />
+                <ScalarProperty Name="DatumRezervacije" ColumnName="DatumRezervacije" />
+                <ScalarProperty Name="BrojDokumenta" ColumnName="BrojDokumenta" />
+                <ScalarProperty Name="TipDokumenta" ColumnName="TipDokumenta" />
+                <ScalarProperty Name="TipPutnika" ColumnName="TipPutnika" />
+                <ScalarProperty Name="Spol" ColumnName="Spol" />
+                <ScalarProperty Name="DatumRodjenjaPutnika" ColumnName="DatumRodjenjaPutnika" />
+                <ScalarProperty Name="PrezimePutnika" ColumnName="PrezimePutnika" />
+                <ScalarProperty Name="ImePutnika" ColumnName="ImePutnika" />
+                <ScalarProperty Name="SjedistePolazakID" ColumnName="SjedistePolazakID" />
+                <ScalarProperty Name="LetPolazakID" ColumnName="LetPolazakID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="RezervacijaID" ColumnName="RezervacijaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
